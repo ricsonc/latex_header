@@ -1,0 +1,177 @@
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[expansion=false]{microtype}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{color}
+\usepackage{soul}
+\usepackage{natbib}
+
+\bibliographystyle{abbrv}
+
+\allowdisplaybreaks
+
+\newcommand{\nec}[1]{\newcommand{#1}}
+\newcommand{\rec}[1]{\renewcommand{#1}}
+
+%environments 
+\nec{\eq}[1]{\begin{align*}#1\end{align*}}
+\nec{\enum}[1]{\begin{enumerate}#1\end{enumerate}}
+\nec{\itmz}[1]{\begin{itemize}#1\end{itemize}}
+\nec{\alg}[1]{\begin{algorithmic}#1\end{algorithmic}}
+\nec{\paren}[1]{\left( #1 \right)}
+\nec{\sparen}[1]{\left[ #1 \right]}
+\nec{\bexp}[1]{\exp \paren{#1}}
+\nec{\nexp}[1]{\bexp{-\paren{#1}}}
+\nec{\nhexp}[1]{\bexp{\nhaf #1}}
+
+%symbols
+\nec{\ra}{\rightarrow}
+\nec{\la}{\leftarrow}
+
+\nec{\x}{\mathbf{x}}
+\nec{\y}{\mathbf{y}}
+\rec{\o}{\mathbf{o}}
+\rec{\u}{\mathbf{u}}
+\nec{\RR}{\mathbb{R}}
+\nec{\bfu}{\mathbf{u}}
+
+\nec{\haf}{\frac{1}{2}}
+\nec{\nhaf}{-\haf}
+\nec{\nmz}{\frac{1}{Z}}
+
+\nec{\const}{\text{const}}
+\nec{\smx}{\text{softmax}}
+\nec{\samp}{\text{sample}}
+\nec{\argmax}{\text{argmax}}
+\nec{\argmin}{\text{argmin}}
+
+\nec{\inv}[1]{\frac{1}{#1}}
+\nec{\eps}{\epsilon}
+
+\nec{\ind}{\mathbf{1}}
+
+%calculus
+\nec{\grad}{\nabla}
+\nec{\gradt}{\nabla_\theta}
+\nec{\dtheta}{\Delta \theta}
+\nec{\jac}{\mathbf{J}}
+\nec{\hess}{\mathbf{H}}
+\nec{\parr}[1]{\frac{\partial}{\partial #1}}
+\nec{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\nec{\parfsq}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+\rec{\st}{\text{subject to }}
+\nec{\lag}{\mathcal{L}}
+
+%linear algebra
+\nec{\qf}[2]{#1^T #2 #1}
+\nec{\qfo}[3]{\qf{(#1-#3)}{#2}}
+\nec{\minv}[1]{#1^{-1}}
+\nec{\mdet}[1]{\left| #1 \right|}
+\nec{\tr}{\text{tr}}
+\nec{\sos}[1]{#1^T #1}
+\nec{\scov}[1]{#1 #1^T}
+\nec{\magsq}[1]{\left| \left| #1 \right| \right|^2}
+\nec{\diag}{\text{diag}}
+
+\nec{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\nec{\mat}[1]{\begin{matrix} #1 \end{matrix}}
+\nec{\vt}[2]{\begin{bmatrix} #1 \\ #2 \end{bmatrix}}
+\nec{\mt}[4]{\begin{bmatrix} #1 & #2 \\ #3 & #4 \end{bmatrix}}
+\nec{\vtx}{\vt{x_a}{x_b}}
+\nec{\vtmu}{\vt{\mu_a}{\mu_b}}
+\nec{\mtlambda}{\mt{\Lambda_{aa}}{\Lambda_{ab}}{\Lambda_{ba}}{\Lambda_{bb}}}
+
+%probability
+\nec{\uvnml}[3]{\frac{1}{\sqrt{2 \pi #3^2}} \exp{\left(-\frac{(#1-#2)^2}{2 #3^2}\right)}}
+\nec{\uvnmlp}[3]{\sqrt{\frac{#3}{2\pi}} \exp{\left(-\frac{#3(#1-#2)^2}{2}\right)}}
+\nec{\mvnml}[3]{(2 \pi)^{-\frac{D}{2}} |#3|^{\nhaf} \exp{\left( \nhaf \qfo{#1}{#3^{-1}}{#2} \right)}}
+\nec{\mvnmlp}[3]{(2 \pi)^{-\frac{D}{2}} |#3|^{\haf} \exp{\left( \nhaf \qfo{#1}{#3}{#2} \right)}}
+\nec{\nml}[2]{\mathcal{N}(#1, #2)}
+\nec{\kl}[2]{\mathcal{D}_\text{KL}(#1||#2)}
+\nec{\cov}{\text{Cov}}
+\nec{\var}{\text{Var}}
+\nec{\gammadist}[3]{\frac{#3^{#2}}{\Gamma(#2)} #1^{#2-1} e^{-#3 #1}}
+\nec{\gam}[2]{\mathbf{\Gamma}(#1, #2)}
+\nec{\avgsum}{\frac{1}{n}\sum}
+
+%message passing stuff
+\nec{\msg}[2]{\mu (#1 \rightarrow #2)}
+\rec{\ne}[2]{N(#1) \setminus #2}
+
+% policies
+\nec{\pol}{\pi_\theta}
+
+% convenience
+\nec{\todo}[1]{{\color{red} \textbf{ \hl{todo: #1}}}}
+
+%optimal control
+\nec{\Cuu}{C_{uu}}
+\nec{\Cxx}{C_{xx}}
+\nec{\Cux}{C_{ux}}
+\nec{\Cxu}{C_{xu}}
+\nec{\cxt}{c_x^T}
+\nec{\cut}{c_u^T}
+\nec{\Dum}{D_u}
+\nec{\Dxm}{D_x}
+\nec{\vecd}{\vec d}
+\nec{\vecp}{\vec p}
+\nec{\vecdt}{\vec{d\,}^T}
+\nec{\vecpt}{\vec{p\,}^T}
+\nec{\vecq}{\vec q}
+\nec{\veck}{\vec k}
+\nec{\vecm}{\vec m}
+
+%for rotation matrix convenience
+\nec{\calpha}{\cos(\alpha)}
+\nec{\salpha}{\sin(\alpha)}
+\nec{\cbeta}{\cos(\beta)}
+\nec{\sbeta}{\sin(\beta)}
+\nec{\cgamma}{\cos(\gamma)}
+\nec{\sgamma}{\sin(\gamma)}
+
+
+% stats class
+\nec{\bh}{\hat{\beta}}
+\nec{\bhz}{\hat{\beta_0}}
+\nec{\bho}{\hat{\beta_1}}
+\nec{\betahattwo}{\hat{\beta_2}}
+\nec{\bz}{\beta_0}
+\nec{\bo}{\beta_1}
+\nec{\betatwo}{\beta_2}
+\nec{\yb}{\bar y}
+\nec{\xb}{\bar x}
+\nec{\epshat}{\hat \eps}
+\nec{\cxy}{c_{XY}}
+\nec{\sx}{s_X}
+\nec{\bfyh}{\mathbf{\hat{Y}}}
+\nec{\bfy}{\mathbf{Y}}
+
+\nec{\seh}{\hat{\text{se}}}
+\nec{\se}{\text{se}}
+\nec{\mh}{\hat m}
+\nec{\sigh}{\hat \sigma^2}
+\nec{\corr}{\text{Corr}}
+\nec{\sst}{\text{SST}}
+\nec{\sse}{\text{SSE}}
+\nec{\rss}{\text{RSS}}
+\nec{\ssr}{\text{SS}_\text{reg}}
+\nec{\mse}{\text{MSE}}
+\nec{\msr}{\text{MS}_\text{reg}}
+\nec{\msres}{\text{MS}_\text{res}}
+
+% Graphics
+
+\nec{\img}[1]{\includegraphics[width=\textwidth]{#1}}
+\nec{\imgmed}[1]{\includegraphics[width=0.7\textwidth]{#1}}
+\nec{\imgsmall}[1]{\includegraphics[width=0.4\textwidth]{#1}}
+
+% CNN
+\nec{\conv}{\text{Conv}}
+\nec{\pool}{\text{Pool}}
+\nec{\flatten}{\text{Flatten}}
